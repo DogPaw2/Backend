@@ -1,28 +1,25 @@
 package Dogpaw.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity @Table
+@Entity
 @Getter
 @Setter
+// why protected?
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//builds constructor with @NonNull annotation
+@RequiredArgsConstructor
 public class Workspace {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "WORKSPACE_ID")
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String url;
 
-//    채널(채팅+아이디어), 메시지와 1:N 메핑.
-
-    protected Workspace() { }
-
-    public Workspace(String name, String url) {
-        this.name = name;
-        this.url = url;
-    }
 }

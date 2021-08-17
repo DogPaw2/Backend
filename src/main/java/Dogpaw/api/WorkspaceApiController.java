@@ -2,11 +2,9 @@ package Dogpaw.api;
 
 
 import Dogpaw.domain.Workspace;
-import Dogpaw.dto.Workspace.DeleteWorkspceDTO;
-import Dogpaw.dto.Workspace.MakeWorkspaceDTO;
-import Dogpaw.dto.Workspace.ResponseDeleteWorkspaceDTO;
-import Dogpaw.dto.Workspace.ResponseMakeWorkspaceDTO;
 import Dogpaw.service.WorkspaceService;
+import javassist.NotFoundException;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,19 +12,22 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class WorkspaceApiController {
+
+    @NonNull
     private final WorkspaceService workspaceService;
 
-    @PutMapping("/make/workspace")
-    public ResponseMakeWorkspaceDTO makeWorkspace(@RequestBody MakeWorkspaceDTO dto){
+    @PutMapping("/workspace")
+    public ResponseDTO.Create createWorkspace(@RequestBody WorkSpaceDTO.Create dto) throws WorkspaceService.ArgumentNullException, WorkspaceService.InvalidArgumentException {
         Workspace workspace = new Workspace(dto.getName(), dto.getUrl());
-        workspaceService.save(workspace);
-        return new ResponseMakeWorkspaceDTO(workspace.getId(), true);
+
+        Long saveId = workspaceService.saveWorkSpace(workspace);
+
+        return new ResponseDTO.Create(saveId, true);
     }
 
-    @DeleteMapping("/delete/workspace")
-    public ResponseDeleteWorkspaceDTO makeWorkspace(@RequestBody DeleteWorkspceDTO dto){
-        Workspace workspace = workspaceService.findOne(dto.getId());
-        workspaceService.delete(workspace);
-        return new ResponseDeleteWorkspaceDTO(true);
+    @DeleteMapping("/workspace")
+    public ResponseDTO.Delete deleteWorkspace(@RequestBody WorkSpaceDTO.Delete dto) throws NotFoundException {
+        workspaceService.deleteByWorkSpaceId(dto.getId());
+        return new ResponseDTO.Delete(true);
     }
 }
