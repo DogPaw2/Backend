@@ -1,20 +1,20 @@
-package Dogpaw.api;
+package Dogpaw.dto;
 
 import lombok.Data;
 
-public class WorkSpaceDTO {
+public class MessageDTO {
 
     @Data
-    public static class Create extends Update{
+    public static class Create extends Update {
 
     }
 
     @Data
     public static class Update {
 
-        private String name;
+        private String sendBy;
 
-        private String url;
+        private String text;
 
     }
 

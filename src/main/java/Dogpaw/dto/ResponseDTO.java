@@ -1,13 +1,11 @@
-package Dogpaw.api;
+package Dogpaw.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 public class ResponseDTO {
 
-
+    @Data
     @AllArgsConstructor
     public static class BaseResponse {
 

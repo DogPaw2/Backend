@@ -1,6 +1,8 @@
 package Dogpaw.api;
 
 import Dogpaw.domain.Message;
+import Dogpaw.dto.MessageDTO;
+import Dogpaw.dto.ResponseDTO;
 import Dogpaw.service.MessageService;
 import javassist.NotFoundException;
 import lombok.NonNull;

@@ -6,8 +6,7 @@ import javassist.NotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
@@ -30,7 +29,7 @@ public class MessageService {
     }
 
     public Message findOne(Long id) throws NotFoundException {
-        Message message = messageRepository.findById(id).orElseThrow(() -> new MessageService.MessageNotFoundException("Message with id : " + id + "is not valid"));
+        Message message = messageRepository.findById(id).orElseThrow(() -> new MessageNotFoundException("Message with id : " + id + "is not valid"));
         return message;
     }
 
