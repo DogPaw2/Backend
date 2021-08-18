@@ -7,7 +7,7 @@ import lombok.NonNull;
 
 public class ResponseDTO {
 
-
+    @Data
     @AllArgsConstructor
     public static class BaseResponse {
 
