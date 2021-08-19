@@ -3,6 +3,8 @@ package Dogpaw.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,7 +19,7 @@ public class Chatting {
     @NonNull
     private String purpose;
 
-    @NonNull
-    private String user;
+//    @NonNull
+//    private String user;
 
 }

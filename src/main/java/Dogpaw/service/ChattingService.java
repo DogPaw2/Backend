@@ -39,10 +39,9 @@ public class ChattingService {
         return chatting;
     }
 
-    public List <Chatting> getChattingList(String User){
-        List <Chatting> chattings = chattingRepository.findAllByUserOrderByName(User);
-        return chattings;
-    }
+//    public List <Chatting> getChattingList(String User){
+//        return chattingRepository.findAllByUserOrderByName(User);
+//    }
 
 
 

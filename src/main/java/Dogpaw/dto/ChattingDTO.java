@@ -18,4 +18,9 @@ public class ChattingDTO {
     public static class Delete {
         private Long id;
     }
+
+    @Data
+    public static class Get {
+        private Long id;
+    }
 }

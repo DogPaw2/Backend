@@ -1,9 +1,14 @@
 package Dogpaw.dto;
 
+import Dogpaw.domain.Chat;
+import Dogpaw.domain.ChatMapping;
+import Dogpaw.domain.Chatting;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+
+import java.util.List;
 
 public class ResponseDTO {
 
@@ -27,6 +32,14 @@ public class ResponseDTO {
         public Delete(Boolean success) {
             super(success);
         }
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class ChattingResponse{
+        Boolean success;
+        private List<ChatMapping> chats;
+        private Chatting chatting;
     }
 
 }
