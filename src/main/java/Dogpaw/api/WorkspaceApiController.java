@@ -2,6 +2,8 @@ package Dogpaw.api;
 
 
 import Dogpaw.domain.Workspace;
+import Dogpaw.dto.ResponseDTO;
+import Dogpaw.dto.WorkSpaceDTO;
 import Dogpaw.service.WorkspaceService;
 import javassist.NotFoundException;
 import lombok.NonNull;
@@ -16,7 +18,7 @@ public class WorkspaceApiController {
     @NonNull
     private final WorkspaceService workspaceService;
 
-    @PutMapping("/workspace")
+    @PostMapping("/workspace")
     public ResponseDTO.Create createWorkspace(@RequestBody WorkSpaceDTO.Create dto) throws WorkspaceService.ArgumentNullException, WorkspaceService.InvalidArgumentException {
         Workspace workspace = new Workspace(dto.getName(), dto.getUrl());
 

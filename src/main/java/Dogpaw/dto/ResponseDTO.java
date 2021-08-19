@@ -1,4 +1,4 @@
-package Dogpaw.api;
+package Dogpaw.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,7 @@ public class ResponseDTO {
 
 
     @AllArgsConstructor
+    @Data
     public static class BaseResponse {
 
         Boolean success;
