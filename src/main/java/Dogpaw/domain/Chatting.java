@@ -18,8 +18,4 @@ public class Chatting {
     private String name;
     @NonNull
     private String purpose;
-
-//    @NonNull
-//    private String user;
-
 }

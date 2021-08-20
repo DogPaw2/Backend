@@ -17,10 +17,10 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @OneToOne
-//    @JoinColumn(name = "USER_ID")
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
     @NonNull
-    private Long user;
+    private User user;
 
     @NonNull
     private String text;
