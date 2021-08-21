@@ -26,13 +26,20 @@ public class MessageApiController {
 
     @PutMapping("/message")
     public ResponseDTO.Create createMessage(@RequestBody MessageDTO.Create dto) throws MessageService.ArgumentNullException, MessageService.InvalidArgumentException, NotFoundException {
-        MessageAll messageAll = messageAllService.findOne(dto.getMessageId());
+        MessageAll messageAll = messageAllService.findOne(dto.getId());
 
         Message message = new Message(dto.getSendBy(), dto.getText(), dto.getDate(), dto.getTime(), messageAll);
 
         Long saveId = messageService.saveMessage(message);
 
         return new ResponseDTO.Create(saveId, true);
+    }
+
+    // ** 업데이트 추가 **
+    @PutMapping("/message")
+    public ResponseDTO.Update updateMessage(@RequestBody MessageDTO.Update dto, String text) throws NotFoundException {
+        messageService.updateByMessageId(dto.getId(), dto.getText());
+        return new ResponseDTO.Update(true);
     }
 
     @DeleteMapping("/message")

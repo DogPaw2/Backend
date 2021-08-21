@@ -43,6 +43,13 @@ public class MessageService {
         messageRepository.deleteById(id);
     }
 
+    // ** 업데이트 추가 **
+    public void updateByMessageId(Long id, String text) throws NotFoundException {
+        Message message = findOne(id);
+        message.setText(text);
+        messageRepository.save(message);
+    }
+
     public List<MessageMapping> getMessageList(Long id) throws NotFoundException {
         MessageAll messageAll = messageAllRepository.findById(id).orElseThrow(() -> new MessageAllService.MessageAllNotFoundException("MessageAll with id : "+ id + "is not valid"));
         return messageRepository.findAllMessage(messageAll);
