@@ -1,6 +1,10 @@
 package Dogpaw.api;
 
+import Dogpaw.domain.File;
 import lombok.Data;
+
+import java.util.Date;
+import java.util.List;
 
 public class IdeaDTO {
 
@@ -16,8 +20,9 @@ public class IdeaDTO {
 
         private String text;
 
-        private String contents;
+        private Date date;
 
+        List<File> files;
     }
 
     @Data

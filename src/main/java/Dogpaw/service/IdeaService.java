@@ -20,10 +20,10 @@ public class IdeaService {
         //fail fast pattern
         //if Argument is invalid, dont do any logic
         if(idea == null){
-            throw new ArgumentNullException("WorkSpace can't be null");
+            throw new ArgumentNullException("Idea can't be null");
         }
-        if(idea.getText().isEmpty() || idea.getContents().isEmpty()){
-            throw new InvalidArgumentException("Work Space Id or URl is null");
+        if(idea.getText().isEmpty()){
+            throw new InvalidArgumentException("Idea text is null");
         }
         Idea save = ideaRepository.save(idea);
 
