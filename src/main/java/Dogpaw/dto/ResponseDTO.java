@@ -34,6 +34,7 @@ public class ResponseDTO {
         }
     }
 
+
     @Data
     @AllArgsConstructor
     public static class ChattingResponse{
