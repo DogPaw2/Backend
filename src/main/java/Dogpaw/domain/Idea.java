@@ -29,7 +29,7 @@ public class Idea {
     @NonNull
     private Date date;
 
-    @OneToMany
-    List<File> files_ID = new ArrayList<>();
+//    @OneToMany
+//    List<File> files_ID = new ArrayList<>();
 
 }

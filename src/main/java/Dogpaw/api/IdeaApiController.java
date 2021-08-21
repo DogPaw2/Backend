@@ -27,24 +27,24 @@ public class IdeaApiController {
 
     @PostMapping("/Idea")
     public ResponseDTO.Create createIdea(@RequestBody IdeaDTO.Create dto, @RequestParam MultipartFile[] uploadFiles) throws IdeaService.ArgumentNullException, IdeaService.InvalidArgumentException {
-        List<File> files = new ArrayList<>();
-        for(MultipartFile file : uploadFiles){
-            if(!file.isEmpty()){
-                String fileName = file.getOriginalFilename();
-                String contentType = file.getContentType();
-                String savePath = System.getProperty("user.dir") + "\\files";
-                if (!new File(savePath).exists()) {
-                    try{
-                        new File(savePath).mkdir();
-                    }
-                    catch(Exception e){
-                        e.getStackTrace();
-                    }
-                }
-
-                String filePath = savePath + "\\" + fileName;
-            }
-        }
+//        List<File> files = new ArrayList<>();
+//        for(MultipartFile file : uploadFiles){
+//            if(!file.isEmpty()){
+//                String fileName = file.getOriginalFilename();
+//                String contentType = file.getContentType();
+//                String savePath = System.getProperty("user.dir") + "\\files";
+//                if (!new File(savePath).exists()) {
+//                    try{
+//                        new File(savePath).mkdir();
+//                    }
+//                    catch(Exception e){
+//                        e.getStackTrace();
+//                    }
+//                }
+//
+//                String filePath = savePath + "\\" + fileName;
+//            }
+//        }
 
         Idea Idea = new Idea(dto.getUser(), dto.getText(), dto.getDate());
 
