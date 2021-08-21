@@ -18,7 +18,7 @@ public class WorkspaceApiController {
     @NonNull
     private final WorkspaceService workspaceService;
 
-    @PutMapping("/workspace")
+    @PostMapping("/workspace")
     public ResponseDTO.Create createWorkspace(@RequestBody WorkSpaceDTO.Create dto) throws WorkspaceService.ArgumentNullException, WorkspaceService.InvalidArgumentException {
         Workspace workspace = new Workspace(dto.getName(), dto.getUrl());
 
