@@ -1,4 +1,4 @@
-package Dogpaw.api;
+package Dogpaw.dto;
 
 import Dogpaw.domain.File;
 import lombok.Data;

@@ -2,6 +2,8 @@ package Dogpaw.api;
 
 
 import Dogpaw.domain.Workspace;
+import Dogpaw.dto.ResponseDTO;
+import Dogpaw.dto.WorkSpaceDTO;
 import Dogpaw.service.WorkspaceService;
 import javassist.NotFoundException;
 import lombok.NonNull;

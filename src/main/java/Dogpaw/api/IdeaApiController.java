@@ -3,6 +3,8 @@ package Dogpaw.api;
 
 import Dogpaw.domain.File;
 import Dogpaw.domain.Idea;
+import Dogpaw.dto.IdeaDTO;
+import Dogpaw.dto.ResponseDTO;
 import Dogpaw.service.FileService;
 import Dogpaw.service.IdeaService;
 import javassist.NotFoundException;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
