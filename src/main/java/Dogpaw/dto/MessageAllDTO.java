@@ -3,26 +3,25 @@ package Dogpaw.dto;
 import Dogpaw.domain.User;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-public class MessageDTO {
-
+public class MessageAllDTO {
     @Data
     public static class Create extends Update {
-        private Long messageId;
+
     }
 
     @Data
     public static class Update {
-        private byte sendBy;
-        private String text;
-        private LocalDate date;
-        private LocalTime time;
+        private User user;
     }
 
     @Data
     public static class Delete {
         private Long id;
     }
+
+    @Data
+    public static class Get {
+        private Long id;
+    }
+
 }

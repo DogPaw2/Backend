@@ -1,12 +1,17 @@
 package Dogpaw.service;
 
 import Dogpaw.domain.Message;
+import Dogpaw.domain.MessageAll;
+import Dogpaw.domain.MessageMapping;
+import Dogpaw.repository.MessageAllRepository;
 import Dogpaw.repository.MessageRepository;
 import javassist.NotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -15,13 +20,14 @@ public class MessageService {
 
     @NonNull
     private final MessageRepository messageRepository;
+    private final MessageAllRepository messageAllRepository;
 
     public Long saveMessage(Message message) throws ArgumentNullException, InvalidArgumentException {
         if(message == null) {
             throw new ArgumentNullException("Message can't be null");
         }
-        if(message.getSendBy().isEmpty() || message.getText().isEmpty()){
-            throw new InvalidArgumentException("Message SendBy or TEXT is null");
+        if(message.getText().isEmpty()){
+            throw new InvalidArgumentException("Message TEXT is null");
         }
         Message save = messageRepository.save(message);
 
@@ -37,6 +43,14 @@ public class MessageService {
         messageRepository.deleteById(id);
     }
 
+    public List<MessageMapping> getMessageList(Long id) throws NotFoundException {
+        MessageAll messageAll = messageAllRepository.findById(id).orElseThrow(() -> new MessageAllService.MessageAllNotFoundException("MessageAll with id : "+ id + "is not valid"));
+        return messageRepository.findAllMessage(messageAll);
+    }
+
+
+    // exception
+
     public static class MessageNotFoundException extends NotFoundException {
         public MessageNotFoundException(String msg) { super(msg); }
     }
@@ -46,8 +60,6 @@ public class MessageService {
     }
 
     public static class InvalidArgumentException extends Throwable {
-        public InvalidArgumentException(String s) {
-
-        }
+        public InvalidArgumentException(String s) {}
     }
 }

@@ -1,6 +1,5 @@
 package Dogpaw.api;
 
-import Dogpaw.domain.Chat;
 import Dogpaw.domain.ChatMapping;
 import Dogpaw.domain.Chatting;
 import Dogpaw.dto.ChattingDTO;
