@@ -31,10 +31,15 @@ public class MessageAllApiController {
     }
 
     @DeleteMapping("/messageall")
+    public ResponseDTO.Delete deleteMessageAll(@RequestBody MessageAllDTO.Delete dto) throws NotFoundException {
+        messageService.deleteByMessageId(dto.getId());
+        return new ResponseDTO.Delete(true);
+    }
+
+    @GetMapping("/messageall")
     public ResponseDTO.MessageAllResponse getMessageAll(@RequestBody MessageAllDTO.Get dto) throws NotFoundException {
         MessageAll messageAll = messageAllService.findOne(dto.getId());
         List<MessageMapping> messageList = messageService.getMessageList(dto.getId());
-
         return new ResponseDTO.MessageAllResponse(true, messageList, messageAll);
     }
 
