@@ -21,26 +21,12 @@ public class ChattingApiController {
     private final ChattingService chattingService;
     private final ChatService chatService;
 
-    @PostMapping("/chatting")
-    public ResponseDTO.Create createChatting (@RequestBody ChattingDTO.Create dto) throws ChattingService.ArgumentNullException, ChattingService.InvalidArgumentException{
-        Chatting chatting = new Chatting(dto.getName(), dto.getPurpose());
-
-        Long saveId = chattingService.saveChatting(chatting);
-
-        return new ResponseDTO.Create(saveId, true);
-    }
-
-    @DeleteMapping("/chatting")
-    public ResponseDTO.Delete deleteChatting(@RequestBody ChattingDTO.Delete dto) throws NotFoundException{
-        chattingService.deleteByChattingId(dto.getId());
-        return new ResponseDTO.Delete(true);
-    }
 
     @GetMapping("/chatting")
     public ResponseDTO.ChattingResponse getChatting(@RequestBody ChattingDTO.Get dto) throws NotFoundException{
         Chatting chatting = chattingService.findOne(dto.getId());
         List<ChatMapping> chatList = chatService.getChatList(dto.getId());
-        return new ResponseDTO.ChattingResponse(true, chatList, chatting);
+        return new ResponseDTO.ChattingResponse(true, chatting, chatList);
 
     }
 

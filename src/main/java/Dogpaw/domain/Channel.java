@@ -23,6 +23,7 @@ public class Channel {
     @OneToMany(mappedBy = "channel")
     private List<UserChannel> users = new ArrayList<>();
 
+    @NonNull
     @OneToOne
     @JoinColumn(name = "CHATTING_ID")
     private Chatting chatting;

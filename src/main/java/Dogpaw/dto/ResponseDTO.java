@@ -43,8 +43,8 @@ public class ResponseDTO {
     @AllArgsConstructor
     public static class ChattingResponse {
         Boolean success;
-        private List<ChatMapping> chats;
         private Chatting chatting;
+        private List<ChatMapping> chats;
     }
 
     @Data

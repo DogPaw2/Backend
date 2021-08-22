@@ -6,14 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Chatting {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NonNull
-    private String name;
-    @NonNull
-    private String purpose;
 }
