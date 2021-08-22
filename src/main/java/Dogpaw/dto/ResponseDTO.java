@@ -1,8 +1,6 @@
 package Dogpaw.dto;
 
-import Dogpaw.domain.Chat;
-import Dogpaw.domain.ChatMapping;
-import Dogpaw.domain.Chatting;
+import Dogpaw.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,6 +38,14 @@ public class ResponseDTO {
         Boolean success;
         private List<ChatMapping> chats;
         private Chatting chatting;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class IdeaBoardResponse{
+        Boolean success;
+        private List<IdeaMapping> ideas;
+        private IdeaBoard ideaBoard;
     }
 
 }
