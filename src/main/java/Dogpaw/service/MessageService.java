@@ -50,10 +50,10 @@ public class MessageService {
         messageRepository.save(message);
     }
 
-    public List<MessageMapping> getMessageList(Long id) throws NotFoundException {
-        MessageAll messageAll = messageAllRepository.findById(id).orElseThrow(() -> new MessageAllService.MessageAllNotFoundException("MessageAll with id : "+ id + "is not valid"));
-        return messageRepository.findAllMessage(messageAll);
-    }
+//    public List<MessageMapping> getMessageList(Long id) throws NotFoundException {
+//        MessageAll messageAll = messageAllRepository.findById(id).orElseThrow(() -> new MessageAllService.MessageAllNotFoundException("MessageAll with id : "+ id + "is not valid"));
+//        return messageRepository.findAllByMessageAll(messageAll);
+//    }
 
 
     // exception

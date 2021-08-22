@@ -36,11 +36,11 @@ public class MessageAllApiController {
         return new ResponseDTO.Delete(true);
     }
 
-    @GetMapping("/messageall")
-    public ResponseDTO.MessageAllResponse getMessageAll(@RequestBody MessageAllDTO.Get dto) throws NotFoundException {
-        MessageAll messageAll = messageAllService.findOne(dto.getId());
-        List<MessageMapping> messageList = messageService.getMessageList(dto.getId());
-        return new ResponseDTO.MessageAllResponse(true, messageList, messageAll);
-    }
+//    @GetMapping("/messageall")
+//    public ResponseDTO.MessageAllResponse getMessageAll(@RequestBody MessageAllDTO.Get dto) throws NotFoundException {
+//        MessageAll messageAll = messageAllService.findOne(dto.getId());
+//        List<MessageMapping> messageList = messageService.getMessageList(dto.getId());
+//        return new ResponseDTO.MessageAllResponse(true, messageList, messageAll);
+//    }
 
 }

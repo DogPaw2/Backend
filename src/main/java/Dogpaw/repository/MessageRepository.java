@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-    List<MessageMapping> findAllMessage(MessageAll messageAll);
+//    List<MessageMapping> findAllByMessageAll(MessageAll messageAll);
 }
