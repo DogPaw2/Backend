@@ -35,12 +35,12 @@ public class MessageApiController {
         return new ResponseDTO.Create(saveId, true);
     }
 
-    // ** 업데이트 추가 **
-    @PutMapping("/message")
-    public ResponseDTO.Update updateMessage(@RequestBody MessageDTO.Update dto, String text) throws NotFoundException {
-        messageService.updateByMessageId(dto.getId(), dto.getText());
-        return new ResponseDTO.Update(true);
-    }
+//    // ** 업데이트 추가 **
+//    @PutMapping("/message")
+//    public ResponseDTO.Update updateMessage(@RequestBody MessageDTO.Update dto, String text) throws NotFoundException {
+//        messageService.updateByMessageId(dto.getId(), dto.getText());
+//        return new ResponseDTO.Update(true);
+//    }
 
     @DeleteMapping("/message")
     public ResponseDTO.Delete deleteMessage(@RequestBody MessageDTO.Delete dto) throws NotFoundException {
