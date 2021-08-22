@@ -1,6 +1,7 @@
 package Dogpaw.service;
 
 
+
 import Dogpaw.domain.Idea;
 import Dogpaw.domain.IdeaMapping;
 import Dogpaw.domain.IdeaBoard;
@@ -14,10 +15,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class IdeaService {
+
     @NonNull
     private final IdeaRepository ideaRepository;
     private final IdeaBoardRepository ideaBoardRepository;
@@ -28,6 +31,7 @@ public class IdeaService {
         }
         if(idea.getText().isEmpty()){
             throw new InvalidArgumentException("IdeaBoard text is null");
+
         }
         Idea save = ideaRepository.save(idea);
 
@@ -68,5 +72,3 @@ public class IdeaService {
         }
     }
 }
-
-

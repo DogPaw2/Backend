@@ -1,5 +1,6 @@
 package Dogpaw.api;
 
+
 import Dogpaw.domain.Idea;
 import Dogpaw.domain.IdeaBoard;
 import Dogpaw.domain.User;

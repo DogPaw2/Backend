@@ -1,6 +1,5 @@
 package Dogpaw.dto;
 
-
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,7 +11,6 @@ public class IdeaDTO {
     public static class Create extends Update {
         private Long userId;
         private Long ideaBoardId;
-
     }
 
     @Data

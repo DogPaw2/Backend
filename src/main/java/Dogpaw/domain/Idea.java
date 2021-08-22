@@ -1,6 +1,5 @@
 package Dogpaw.domain;
 
-
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,3 +35,6 @@ public class Idea {
     private IdeaBoard ideaBoard;
 
 }
+
+    //@OneToMany
+    //List<File> files_ID = new ArrayList<>();
