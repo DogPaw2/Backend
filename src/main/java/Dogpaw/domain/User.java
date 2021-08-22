@@ -3,6 +3,8 @@ package Dogpaw.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,4 +17,7 @@ public class User {
 
     @NonNull
     private String name;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserChannel> userChannels = new ArrayList<>();
 }

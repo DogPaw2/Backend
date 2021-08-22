@@ -1,5 +1,6 @@
 package Dogpaw.domain;
 
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.time.LocalTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
-public class Idea {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,10 +32,7 @@ public class Idea {
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdeaBoard_ID")
-    private IdeaBoard ideaBoard;
+    @JoinColumn(name = "CHAT_ID")
+    private Chat chat;
 
 }
-
-//    @OneToMany
-//    List<File> files_ID = new ArrayList<>();

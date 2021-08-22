@@ -1,6 +1,5 @@
 package Dogpaw.api;
 
-
 import Dogpaw.domain.Idea;
 import Dogpaw.domain.IdeaBoard;
 import Dogpaw.domain.User;
@@ -24,7 +23,7 @@ public class IdeaApiController {
     private final UserService userService;
 
 
-    @PostMapping("/Idea")
+    @PostMapping("/idea")
     public ResponseDTO.Create createIdea(@RequestBody IdeaDTO.Create dto) throws IdeaService.ArgumentNullException, IdeaService.InvalidArgumentException, NotFoundException {
         IdeaBoard ideaBoard = IdeaBoardService.findOne(dto.getIdeaBoardId());
         User user = userService.findOne(dto.getUserId());
@@ -36,7 +35,7 @@ public class IdeaApiController {
     }
 
 
-    @DeleteMapping("/Idea")
+    @DeleteMapping("/idea")
     public ResponseDTO.Delete createIdea(@RequestBody IdeaDTO.Delete dto) throws NotFoundException {
         IdeaService.deleteByIdeaId(dto.getId());
         return new ResponseDTO.Delete(true);

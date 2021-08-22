@@ -22,10 +22,8 @@ public class ChattingService {
         if(chatting == null){
             throw new ArgumentNullException("Chatting can't be null");
         }
-        if(chatting.getName().isEmpty()){
-            throw new InvalidArgumentException("Chatting Name is null");
-        }
         Chatting save = chattingRepository.save(chatting);
+
 
         return save.getId();
     }
@@ -38,10 +36,6 @@ public class ChattingService {
         Chatting chatting = chattingRepository.findById(id).orElseThrow(() -> new ChattingNotFoundException("Chatting with id : "+ id + "is not valid"));
         return chatting;
     }
-
-//    public List <Chatting> getChattingList(String User){
-//        return chattingRepository.findAllByUserOrderByName(User);
-//    }
 
 
 

@@ -19,9 +19,6 @@ public class IdeaBoardService {
         if(ideaBoard == null){
             throw new ArgumentNullException("IdeaBoard can't be null");
         }
-        if(ideaBoard.getName().isEmpty()){
-            throw new InvalidArgumentException("IdeaBoard Name is null");
-        }
         IdeaBoard save = ideaBoardRepository.save(ideaBoard);
 
         return save.getId();
@@ -35,11 +32,6 @@ public class IdeaBoardService {
         IdeaBoard IdeaBoard = ideaBoardRepository.findById(id).orElseThrow(() -> new IdeaBoardNotFoundException("IdeaBoard with id : "+ id + "is not valid"));
         return IdeaBoard;
     }
-
-//    public List <IdeaBoard> getIdeaBoardList(String User){
-//        return IdeaBoardRepository.findAllByUserOrderByName(User);
-//    }
-
 
 
 // exception

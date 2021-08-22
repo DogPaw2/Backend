@@ -18,7 +18,7 @@ public class ResponseDTO {
         Boolean success;
     }
 
-    public static class Create extends BaseResponse{
+    public static class Create extends BaseResponse {
         Long id;
 
         public Create(Long id, Boolean success){
@@ -26,26 +26,41 @@ public class ResponseDTO {
             this.id = id;
         }
     }
-    public static class Delete extends BaseResponse{
+
+    // ** 업데이트 추가 **
+    public static class Update extends BaseResponse {
+        public Update(Boolean success) { super(success); }
+    }
+
+    public static class Delete extends BaseResponse {
         public Delete(Boolean success) {
             super(success);
         }
     }
 
+
     @Data
     @AllArgsConstructor
-    public static class ChattingResponse{
+    public static class ChattingResponse {
         Boolean success;
-        private List<ChatMapping> chats;
         private Chatting chatting;
+        private List<ChatMapping> chats;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class MessageAllResponse{
+        Boolean success;
+        private List<MessageMapping> messages;
+        private MessageAll messageAll;
     }
 
     @Data
     @AllArgsConstructor
     public static class IdeaBoardResponse{
         Boolean success;
-        private List<IdeaMapping> ideas;
         private IdeaBoard ideaBoard;
+        private List<IdeaMapping> ideas;
     }
 
 }
