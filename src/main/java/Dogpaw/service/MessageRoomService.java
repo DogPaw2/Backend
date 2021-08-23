@@ -1,10 +1,11 @@
 package Dogpaw.service;
 
-import Dogpaw.domain.MessageAll;
-import Dogpaw.repository.MessageAllRepository;
+import Dogpaw.domain.MessageRoom;
+import Dogpaw.repository.MessageRoomRepository;
 import javassist.NotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,27 +13,31 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MessageAllService {
-    @NonNull
-    private final MessageAllRepository messageAllRepository;
+public class MessageRoomService {
 
-    public Long saveMessageAll(MessageAll messageAll) throws ArgumentNullException, InvalidArgumentException {
-        if (messageAll == null) {
+    @NonNull
+    @Autowired
+    private final MessageRoomRepository messageRoomRepository;
+
+    public Long saveMessageRoom(MessageRoom messageRoom) throws ArgumentNullException {
+        if(messageRoom == null) {
             throw new ArgumentNullException("MessageAll can't be null");
         }
-        MessageAll save = messageAllRepository.save(messageAll);
+        MessageRoom save = messageRoomRepository.save(messageRoom);
 
         return save.getId();
     }
 
-    public void deleteByMessageAllId(Long id) throws NotFoundException {
-        messageAllRepository.deleteById(id);
+
+    public MessageRoom findOne(Long id) throws NotFoundException {
+        MessageRoom messageRoom = messageRoomRepository.findById(id).orElseThrow(() -> new MessageAllNotFoundException("MessageAll with id : " + id + "is not valid"));
+        return messageRoom;
     }
 
-    public MessageAll findOne(Long id) throws NotFoundException {
-        MessageAll messageAll = messageAllRepository.findById(id).orElseThrow(() -> new MessageAllNotFoundException("MessageAll with id : " + id + "is not valid"));
-        return messageAll;
+    public void deleteByMessageRoomId(Long id) throws NotFoundException {
+        messageRoomRepository.deleteById(id);
     }
+
 
     // exception
 

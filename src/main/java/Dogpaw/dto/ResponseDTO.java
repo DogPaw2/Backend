@@ -3,8 +3,6 @@ package Dogpaw.dto;
 import Dogpaw.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import java.util.List;
 
@@ -49,10 +47,10 @@ public class ResponseDTO {
 
     @Data
     @AllArgsConstructor
-    public static class MessageAllResponse{
+    public static class MessageRoomResponse {
         Boolean success;
         private List<MessageMapping> messages;
-        private MessageAll messageAll;
+        private MessageRoom messageRoom;
     }
 
 }

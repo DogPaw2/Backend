@@ -9,17 +9,16 @@ import java.time.LocalTime;
 public class MessageDTO {
 
     @Data
-    public static class Create extends Update {
-
+    public static class Create {
+        private Long messageRoomId;
+        private byte sendBy;
+        private String text;
     }
 
     @Data
     public static class Update {
         private Long id;
-        private byte sendBy;
         private String text;
-        private LocalDate date;
-        private LocalTime time;
     }
 
     @Data

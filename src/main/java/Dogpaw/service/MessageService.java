@@ -1,9 +1,9 @@
 package Dogpaw.service;
 
 import Dogpaw.domain.Message;
-import Dogpaw.domain.MessageAll;
 import Dogpaw.domain.MessageMapping;
-import Dogpaw.repository.MessageAllRepository;
+import Dogpaw.domain.MessageRoom;
+import Dogpaw.repository.MessageRoomRepository;
 import Dogpaw.repository.MessageRepository;
 import javassist.NotFoundException;
 import lombok.NonNull;
@@ -20,7 +20,7 @@ public class MessageService {
 
     @NonNull
     private final MessageRepository messageRepository;
-    private final MessageAllRepository messageAllRepository;
+    private final MessageRoomRepository messageRoomRepository;
 
     public Long saveMessage(Message message) throws ArgumentNullException, InvalidArgumentException {
         if(message == null) {
@@ -35,7 +35,7 @@ public class MessageService {
     }
 
     public Message findOne(Long id) throws NotFoundException {
-        Message message = messageRepository.findById(id).orElseThrow(() -> new MessageNotFoundException("Message with id : " + id + "is not valid"));
+        Message message = messageRepository.findById(id).orElseThrow(() -> new MessageRoomNotFoundException("Message with id : " + id + "is not valid"));
         return message;
     }
 
@@ -51,15 +51,15 @@ public class MessageService {
     }
 
     public List<MessageMapping> getMessageList(Long id) throws NotFoundException {
-        MessageAll messageAll = messageAllRepository.findById(id).orElseThrow(() -> new MessageAllService.MessageAllNotFoundException("MessageAll with id : "+ id + "is not valid"));
-        return messageRepository.findAllMessage(messageAll);
+        MessageRoom messageRoom = messageRoomRepository.findById(id).orElseThrow(() -> new MessageRoomNotFoundException("MessageRoom with id : "+ id + "is not valid"));
+        return messageRepository.findAllByMessageRoom(messageRoom);
     }
 
 
     // exception
 
-    public static class MessageNotFoundException extends NotFoundException {
-        public MessageNotFoundException(String msg) { super(msg); }
+    public static class MessageRoomNotFoundException extends NotFoundException {
+        public MessageRoomNotFoundException(String msg) { super(msg); }
     }
 
     public static class ArgumentNullException extends Throwable {

@@ -1,9 +1,13 @@
 package Dogpaw.dto;
 
+import Dogpaw.domain.Message;
 import Dogpaw.domain.User;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-public class MessageAllDTO {
+
+public class MessageRoomDTO {
+
     @Data
     public static class Create extends Update {
 
@@ -11,7 +15,8 @@ public class MessageAllDTO {
 
     @Data
     public static class Update {
-        private User user;
+        private Long userId;
+
     }
 
     @Data
