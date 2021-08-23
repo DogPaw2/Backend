@@ -20,6 +20,7 @@ public class Channel {
     @NonNull
     private String purpose;
 
+    @Getter(AccessLevel.NONE)
     @OneToMany(mappedBy = "channel")
     private List<UserChannel> users = new ArrayList<>();
 

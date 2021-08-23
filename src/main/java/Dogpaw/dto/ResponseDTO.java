@@ -49,6 +49,13 @@ public class ResponseDTO {
 
     @Data
     @AllArgsConstructor
+    public static class ChannelResponse {
+        Boolean success;
+        private List<UserChannelMapping> channelList;
+    }
+
+    @Data
+    @AllArgsConstructor
     public static class MessageAllResponse{
         Boolean success;
         private List<MessageMapping> messages;

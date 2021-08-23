@@ -1,12 +1,17 @@
 package Dogpaw.service;
 
-import Dogpaw.domain.Channel;
+import Dogpaw.domain.*;
 import Dogpaw.repository.ChannelRepository;
+import Dogpaw.repository.UserChannelRepository;
+import Dogpaw.repository.UserRepository;
 import javassist.NotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -14,8 +19,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class ChannelService {
     @NonNull
     private final ChannelRepository channelRepository;
+    @NonNull
+    private final UserRepository userRepository;
+    @NonNull
+    private final UserChannelRepository userChannelRepository;
 
-    public Long saveChannel (Channel channel) throws ArgumentNullException, InvalidArgumentException {
+    public void addUser(Long userId, Long channelId){
+        Channel channel = channelRepository.findById(channelId).get();
+        User user = userRepository.findById(userId).get();
+
+        userChannelRepository.save(UserChannel.builder()
+                .user(user)
+                .channel(channel)
+                .build());
+
+    }
+
+    public Long saveChannel (Channel channel, Long userId) throws ArgumentNullException, InvalidArgumentException, UserService.UserNotFoundException {
         if(channel == null){
             throw new ArgumentNullException("Channel can't be null");
         }
@@ -23,6 +43,7 @@ public class ChannelService {
             throw new InvalidArgumentException("Channel Id or URl is null");
         }
         Channel save = channelRepository.save(channel);
+        addUser(userId, channel.getId());
 
         return save.getId();
 
@@ -32,6 +53,14 @@ public class ChannelService {
         Channel channel = channelRepository.findById(id).orElseThrow(() -> new ChannelNotFoundException("Channel with id : " + id + "is not valid"));
         return channel;
     }
+
+    public List<UserChannelMapping> getChannelList(Long id) throws NotFoundException{
+        User user = userRepository.findById(id).get();
+        return userChannelRepository.findAllByUser(user);
+    }
+
+
+
 
 
     public void deleteByChannelId(Long id) throws NotFoundException {
