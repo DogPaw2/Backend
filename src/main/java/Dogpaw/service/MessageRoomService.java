@@ -19,12 +19,9 @@ public class MessageRoomService {
     @Autowired
     private final MessageRoomRepository messageRoomRepository;
 
-    public Long saveMessageRoom(MessageRoom messageRoom) throws ArgumentNullException, InvalidArgumentException {
+    public Long saveMessageRoom(MessageRoom messageRoom) throws ArgumentNullException {
         if(messageRoom == null) {
             throw new ArgumentNullException("MessageAll can't be null");
-        }
-        if(messageRoom.getUser().isEmpty()) {
-            throw new InvalidArgumentException("Message User is null");
         }
         MessageRoom save = messageRoomRepository.save(messageRoom);
 

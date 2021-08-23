@@ -24,7 +24,7 @@ public class MessageRoomApiController {
 
     @PostMapping("/messageroom")
     public ResponseDTO.Create createMessageRoom (@RequestBody MessageRoomDTO.Create dto) throws MessageRoomService.ArgumentNullException, MessageRoomService.InvalidArgumentException{
-        MessageRoom messageRoom = new MessageRoom(dto.getUser());
+        MessageRoom messageRoom = new MessageRoom(dto.getUserId());
 
         Long saveId = messageRoomService.saveMessageRoom(messageRoom);
 

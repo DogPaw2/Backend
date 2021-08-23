@@ -15,5 +15,5 @@ public class MessageRoom {
     private Long id;
 
     @NonNull
-    private String user;
+    private Long userId;
 }
