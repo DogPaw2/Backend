@@ -3,33 +3,38 @@ package Dogpaw.domain;
 import lombok.*;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
-@Getter
 @Setter
-// why protected?
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-//builds constructor with @NonNull annotation
 @RequiredArgsConstructor
 public class Idea {
-
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
     @NonNull
-    private String user;
+    private User user;
 
     @NonNull
     private String text;
 
     @NonNull
-    private Date date;
+    private LocalDate date;
+    @NonNull
+    private LocalTime time;
+
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdeaBoard_ID")
+    private IdeaBoard ideaBoard;
+
+}
 
 //    @OneToMany
 //    List<File> files_ID = new ArrayList<>();
-
-}

@@ -1,10 +1,13 @@
 package Dogpaw.api;
 
+
 import Dogpaw.domain.*;
 import Dogpaw.dto.ChannelDTO;
 import Dogpaw.dto.ResponseDTO;
 import Dogpaw.service.ChannelService;
 import Dogpaw.service.ChattingService;
+import Dogpaw.service.IdeaBoardService;
+import Dogpaw.service.IdeaService;
 import Dogpaw.service.UserService;
 import javassist.NotFoundException;
 import lombok.NonNull;
@@ -24,12 +27,18 @@ public class ChannelApiController {
     @NonNull
     private final ChattingService chattingService;
 
-    @PostMapping("/channel")
-    public ResponseDTO.Create createUser(@RequestBody ChannelDTO.Create dto) throws ChannelService.InvalidArgumentException, ChannelService.ArgumentNullException, ChattingService.InvalidArgumentException, ChattingService.ArgumentNullException, UserService.UserNotFoundException {
-        Chatting chatting = new Chatting();
-        Long saveId2 = chattingService.saveChatting(chatting);
+    @NonNull
+    private final IdeaBoardService ideaBoardService;
 
-        Channel channel = new Channel(dto.getName(), dto.getPurpose(),chatting);
+    @PostMapping("/channel")
+    public ResponseDTO.Create createUser(@RequestBody ChannelDTO.Create dto) throws ChannelService.InvalidArgumentException, ChannelService.ArgumentNullException, ChattingService.InvalidArgumentException, ChattingService.ArgumentNullException, IdeaBoardService.ArgumentNullException, IdeaBoardService.InvalidArgumentException{
+
+        Chatting chatting = new Chatting();
+        IdeaBoard ideaBoard = new IdeaBoard();
+        Long saveId2 = chattingService.saveChatting(chatting);
+        Long saveId3 = ideaBoardService.saveIdeaBoard(ideaBoard);
+
+        Channel channel = new Channel(dto.getName(), dto.getPurpose(),chatting, ideaBoard);
 
         Long saveId = channelService.saveChannel(channel, dto.getUserId());
 
@@ -40,6 +49,7 @@ public class ChannelApiController {
     public ResponseDTO.Delete createChat(@RequestBody ChannelDTO.Delete dto) throws NotFoundException {
         channelService.deleteByChannelId(dto.getId());
         chattingService.deleteByChattingId(dto.getId());
+        ideaBoardService.deleteByIdeaBoardId(dto.getId());
 
         return new ResponseDTO.Delete(true);
     }

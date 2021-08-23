@@ -40,7 +40,4 @@ public class ChatApiController {
         chatService.deleteByChatId(dto.getId());
         return new ResponseDTO.Delete(true);
     }
-
-
-
 }

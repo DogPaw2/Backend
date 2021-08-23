@@ -1,12 +1,20 @@
 package Dogpaw.service;
 
+
+
 import Dogpaw.domain.Idea;
+import Dogpaw.domain.IdeaMapping;
+import Dogpaw.domain.IdeaBoard;
 import Dogpaw.repository.IdeaRepository;
+import Dogpaw.repository.IdeaBoardRepository;
 import javassist.NotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -15,34 +23,38 @@ public class IdeaService {
 
     @NonNull
     private final IdeaRepository ideaRepository;
+    private final IdeaBoardRepository ideaBoardRepository;
 
     public Long saveIdea (Idea idea) throws ArgumentNullException, InvalidArgumentException {
-        //fail fast pattern
-        //if Argument is invalid, dont do any logic
         if(idea == null){
             throw new ArgumentNullException("Idea can't be null");
         }
         if(idea.getText().isEmpty()){
-            throw new InvalidArgumentException("Idea text is null");
+            throw new InvalidArgumentException("IdeaBoard text is null");
+
         }
         Idea save = ideaRepository.save(idea);
 
         return save.getId();
-
     }
 
-    public Idea findOne(Long id) throws NotFoundException {
-        Idea idea = ideaRepository.findById(id).orElseThrow(() -> new IdeaNotFoundException("Idea with id : " + id + "is not valid"));
+    public void deleteByIdeaId(Long id) throws NotFoundException{
+        ideaRepository.deleteById(id);
+    }
+
+    public Idea findOne(Long id) throws NotFoundException{
+        Idea idea = ideaRepository.findById(id).orElseThrow(() -> new IdeaNotFoundException("Work space with id : " + id + "is not valid"));
         return idea;
     }
 
-
-    public void deleteByIdeaId(Long id) throws NotFoundException {
-
-        ideaRepository.deleteById(id);
-
+    public List<IdeaMapping> getIdeaList(Long id) throws NotFoundException{
+        IdeaBoard ideaBoard = ideaBoardRepository.findById(id).orElseThrow(() -> new IdeaBoardService.IdeaBoardNotFoundException("IdeaBoard with id : "+ id + "is not valid"));
+        return ideaRepository.findAllByIdeaBoard(ideaBoard);
     }
 
+
+
+    // exception
 
     public static class IdeaNotFoundException extends NotFoundException {
         public IdeaNotFoundException(String msg) {

@@ -29,4 +29,9 @@ public class Channel {
     @JoinColumn(name = "CHATTING_ID")
     private Chatting chatting;
 
+    @NonNull
+    @OneToOne
+    @JoinColumn(name = "IdeaBoard_ID")
+    private IdeaBoard ideaBoard;
+
 }

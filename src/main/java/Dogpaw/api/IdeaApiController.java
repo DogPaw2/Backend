@@ -1,60 +1,42 @@
 package Dogpaw.api;
 
-
-import Dogpaw.domain.File;
 import Dogpaw.domain.Idea;
+import Dogpaw.domain.IdeaBoard;
+import Dogpaw.domain.User;
 import Dogpaw.dto.IdeaDTO;
 import Dogpaw.dto.ResponseDTO;
-import Dogpaw.service.FileService;
 import Dogpaw.service.IdeaService;
+import Dogpaw.service.IdeaBoardService;
+import Dogpaw.service.UserService;
 import javassist.NotFoundException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class IdeaApiController {
-
     @NonNull
     private final IdeaService IdeaService;
-    private final FileService FileService;
+    private final IdeaBoardService IdeaBoardService;
+    private final UserService userService;
 
-    @PostMapping("/Idea")
-    public ResponseDTO.Create createIdea(@RequestBody IdeaDTO.Create dto, @RequestParam MultipartFile[] uploadFiles) throws IdeaService.ArgumentNullException, IdeaService.InvalidArgumentException {
-//        List<File> files = new ArrayList<>();
-//        for(MultipartFile file : uploadFiles){
-//            if(!file.isEmpty()){
-//                String fileName = file.getOriginalFilename();
-//                String contentType = file.getContentType();
-//                String savePath = System.getProperty("user.dir") + "\\files";
-//                if (!new File(savePath).exists()) {
-//                    try{
-//                        new File(savePath).mkdir();
-//                    }
-//                    catch(Exception e){
-//                        e.getStackTrace();
-//                    }
-//                }
-//
-//                String filePath = savePath + "\\" + fileName;
-//            }
-//        }
 
-        Idea Idea = new Idea(dto.getUser(), dto.getText(), dto.getDate());
+    @PostMapping("/idea")
+    public ResponseDTO.Create createIdea(@RequestBody IdeaDTO.Create dto) throws IdeaService.ArgumentNullException, IdeaService.InvalidArgumentException, NotFoundException {
+        IdeaBoard ideaBoard = IdeaBoardService.findOne(dto.getIdeaBoardId());
+        User user = userService.findOne(dto.getUserId());
+
+        Idea Idea = new Idea(user, dto.getText(),dto.getDate(), dto.getTime(), ideaBoard);
 
         Long saveId = IdeaService.saveIdea(Idea);
-
         return new ResponseDTO.Create(saveId, true);
     }
 
-    @DeleteMapping("/Idea")
-    public ResponseDTO.Delete deleteIdea(@RequestBody IdeaDTO.Delete dto) throws NotFoundException {
+
+    @DeleteMapping("/idea")
+    public ResponseDTO.Delete createIdea(@RequestBody IdeaDTO.Delete dto) throws NotFoundException {
         IdeaService.deleteByIdeaId(dto.getId());
         return new ResponseDTO.Delete(true);
     }

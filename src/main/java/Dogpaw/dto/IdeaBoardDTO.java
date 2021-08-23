@@ -1,17 +1,17 @@
 package Dogpaw.dto;
 
-import Dogpaw.domain.User;
 import lombok.Data;
 
-public class MessageAllDTO {
+public class IdeaBoardDTO {
     @Data
-    public static class Create extends Update {
+    public static class Create extends Update{
 
     }
 
     @Data
     public static class Update {
-        private User user;
+        private String name;
+        private String purpose;
     }
 
     @Data
@@ -23,5 +23,4 @@ public class MessageAllDTO {
     public static class Get {
         private Long id;
     }
-
 }

@@ -62,4 +62,12 @@ public class ResponseDTO {
         private MessageAll messageAll;
     }
 
+    @Data
+    @AllArgsConstructor
+    public static class IdeaBoardResponse{
+        Boolean success;
+        private IdeaBoard ideaBoard;
+        private List<IdeaMapping> ideas;
+    }
+
 }
