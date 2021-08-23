@@ -14,7 +14,7 @@ import java.time.LocalTime;
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
@@ -23,14 +23,9 @@ public class Message {
     @NonNull
     private String text;
 
-    @NonNull
-    private LocalDate date;
-
-    @NonNull
-    private LocalTime time;
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MESSEAGE_ID")
-    private MessageAll messageAll;
+    private MessageRoom messageRoom;
 }

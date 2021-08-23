@@ -6,15 +6,14 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
-public class MessageAll {
+public class MessageRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    private String user;
 }
